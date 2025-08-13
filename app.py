@@ -13,7 +13,7 @@ df['species'] = df['target'].apply(lambda x: iris.target_names[x])
 
 
 # Load model
-with open(r'C:\Users\AKLakshan\Desktop\your project\model.pkl', 'rb') as f:
+with open('model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # App title
