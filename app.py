@@ -4,6 +4,13 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.datasets import load_iris
+
+# Load Iris dataset into DataFrame
+iris = load_iris(as_frame=True)
+df = iris.frame
+df['species'] = df['target'].apply(lambda x: iris.target_names[x])
+
 
 # Load model
 with open('C:\Users\AKLakshan\Desktop\your project\model.pkl', 'rb') as f:
