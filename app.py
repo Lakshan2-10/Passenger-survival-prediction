@@ -61,8 +61,15 @@ else:
         input_data = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
         prediction = model.predict(input_data)
         prediction_proba = model.predict_proba(input_data)
-        
-        st.success(f'The predicted species is: {iris.target_names[prediction[0]]}')
+        try:
+            predicted_index = prediction[0]
+            predicted_species = iris.target_names[predicted_index]
+            st.success(f'The predicted species is: {predicted_species}')
+        except (IndexError, KeyError):
+            st.error('Prediction index is out of range. Please check your model and input values.')
         st.write('Prediction probabilities:')
         for i, prob in enumerate(prediction_proba[0]):
-            st.write(f"{iris.target_names[i]}: {prob:.2f}")
+            if i < len(iris.target_names):
+                st.write(f"{iris.target_names[i]}: {prob:.2f}")
+            else:
+                st.write(f"Class {i}: {prob:.2f}")
