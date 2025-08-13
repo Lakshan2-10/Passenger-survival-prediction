@@ -39,12 +39,12 @@ elif options == 'Visualization':
     st.subheader('Pairplot of Features')
     fig = sns.pairplot(df, hue='species')
     st.pyplot(fig)
-    
+
     # Boxplot
     st.subheader('Boxplot of Features')
-    plt.figure(figsize=(12,6))
-    sns.boxplot(data=df.drop(columns=['target', 'species']))
-    st.pyplot()
+    fig2, ax = plt.subplots(figsize=(12,6))
+    sns.boxplot(data=df.drop(columns=['target', 'species']), ax=ax)
+    st.pyplot(fig2)
 
 # Prediction Section
 else:
